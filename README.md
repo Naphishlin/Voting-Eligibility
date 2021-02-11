@@ -1,31 +1,17 @@
-#include<iostream>
+#include <iostream>
 using namespace std;
 
-int main() 
+int main()
 {
-    int age;
-    cout << "Enter age of a user:\n";
-    cin>>age;
-    //person is teenager or not
-	//>=13 and <=19
-	if(age>=13 && age<=19)
-	{
-		cout<<"Person is Teenager\n";
-	}
-	else
-	{
-		cout<<"Person is not a Teenager\n";
-	}
-	//condition to check voting eligility
-	if (age >= 18) 
-	{
-        cout << "Congratulation!You are eligible for voting\n";
-    }
-	 else 
-	{
-        cout << "You are not eligible for voting \n";
-        cout << "You would be able to caste your vote after " << 18-age << " year" ;
-    }
+   int data[5];
+   cout << "Enter elements: ";
 
-    return 0;
+   for(int i = 0; i < 5; ++i)
+      cin >> data[i];
+
+   cout << "You entered: ";
+   for(int i = 0; i < 5; ++i)
+      cout << endl << *(data + i);
+
+   return 0;
 }
