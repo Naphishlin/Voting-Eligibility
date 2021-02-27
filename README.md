@@ -1,45 +1,47 @@
 #include <iostream>
+#include <iomanip>
+ 
 using namespace std;
-bool checkPrime(int n);
-int main() {
-    int n, i;
-    bool flag = false;
-
-    cout << "Enter a positive  integer: ";
-    cin >> n;
-
-    for(i = 2; i <= n/2; ++i) {
-        if (checkPrime(i)) {
-            if (checkPrime(n - i)) {
-                cout << n << " = " << i << " + " << n-i << endl;
-                flag = true;
-            }
-        }
-    }
-  if (!flag)
-      cout << n << " can't be expressed as sum of two prime numbers.";
-
-    return 0;
-}
-
-// Check prime number
-bool checkPrime(int n)
+ 
+class Time
 {
-    int i;
-    bool isPrime = true;
-
-    // 0 and 1 are not prime numbers
-    if (n == 0 || n == 1) {
-        isPrime = false;
-    }
-    else {
-        for(i = 2; i <= n/2; ++i) {
-            if(n % i == 0) {
-                isPrime = false;
-                break;
-            }
-        }
-    }
-
-    return isPrime;
+    private:
+        int seconds;
+        int hh,mm,ss;
+    public:
+        void getTime(void);
+        void convertIntoSeconds(void);
+        void displayTime(void);
+};
+ 
+void Time::getTime(void)
+{
+    cout << "Enter time:" << endl;
+    cout << "Hours?   ";          cin >> hh;
+    cout << "Minutes? ";          cin >> mm;
+    cout << "Seconds? ";          cin >> ss;
+}
+ 
+void Time::convertIntoSeconds(void)
+{
+    seconds = hh*3600 + mm*60 + ss;
+}
+ 
+void Time::displayTime(void)
+{
+    cout << "The time is = " << setw(2) << setfill('0') << hh << ":"
+                             << setw(2) << setfill('0') << mm << ":"
+                             << setw(2) << setfill('0') << ss << endl;
+    cout << "Time in total seconds: " << seconds;
+}
+ 
+int main()
+{
+    Time T; //creating objects
+     
+    T.getTime();
+    T.convertIntoSeconds();
+    T.displayTime();
+     
+    return 0;
 }
