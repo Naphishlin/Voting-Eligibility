@@ -1,31 +1,45 @@
-#include<iostream>
+#include <iostream>
 using namespace std;
+bool checkPrime(int n);
+int main() {
+    int n, i;
+    bool flag = false;
 
-int main() 
-{
-    int age;
-    cout << "Enter age of a user:\n";
-    cin>>age;
-    //person is teenager or not
-	//>=13 and <=19
-	if(age>=13 && age<=19)
-	{
-		cout<<"Person is Teenager\n";
-	}
-	else
-	{
-		cout<<"Person is not a Teenager\n";
-	}
-	//condition to check voting eligility
-	if (age >= 18) 
-	{
-        cout << "Congratulation!You are eligible for voting\n";
+    cout << "Enter a positive  integer: ";
+    cin >> n;
+
+    for(i = 2; i <= n/2; ++i) {
+        if (checkPrime(i)) {
+            if (checkPrime(n - i)) {
+                cout << n << " = " << i << " + " << n-i << endl;
+                flag = true;
+            }
+        }
     }
-	 else 
-	{
-        cout << "You are not eligible for voting \n";
-        cout << "You would be able to caste your vote after " << 18-age << " year" ;
-    }
+  if (!flag)
+      cout << n << " can't be expressed as sum of two prime numbers.";
 
     return 0;
+}
+
+// Check prime number
+bool checkPrime(int n)
+{
+    int i;
+    bool isPrime = true;
+
+    // 0 and 1 are not prime numbers
+    if (n == 0 || n == 1) {
+        isPrime = false;
+    }
+    else {
+        for(i = 2; i <= n/2; ++i) {
+            if(n % i == 0) {
+                isPrime = false;
+                break;
+            }
+        }
+    }
+
+    return isPrime;
 }
